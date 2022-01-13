@@ -6,33 +6,34 @@ print(np.__version__)
 np.show_config()
 
 # 3. Create a null vector of size 10
-a = np.zeros(10)
-print(a)
+Z = np.zeros(10)
+print(Z)
 
 # 4. How to find the memory size of any array
-aSize = a.size * a.itemsize
-print(aSize)
+zSize = Z.size * Z.itemsize
+print(zSize)
 
 # 5. How to get the documentation of the numpy add function from the command line?
-np.info(np.add)
+'''python -c "import numpy; numpy.info(numpy.add)'''
 
 # 6. Create a null vector of size 10 but the fifth value which is 1
-b = np.zeros(10)
-b[4] = 1
-print(b)
+Z = np.zeros(10)
+Z[4] = 1
+print(Z)
 
 # 7. Create a vector with values ranging from 10 to 49
-c = np.arange(10, 50)
-print(c)
+Z = np.arange(10, 50)
+print(Z)
 
 # 8. Reverse a vector (first element becomes last)
-d = np.flip(c)
-print(d)
+Z = np.arange(50)
+Z = Z[::-1]
+print(Z)
 
 # 9. Create a 3x3 matrix with values ranging from 0 to 8
-e = np.arange(0,9).reshape(3,3)
-print(e)
+Z = np.arange(9).reshape(3,3)
+print(Z)
 
 # 10. Find indices of non-zero elements from [1,2,0,0,4,0]
-f = np.array([1,2,0,0,4,0])
-print(np.where(f != 0))
+nz = np.nonzero([1,2,0,0,4,0])
+print(nz)
