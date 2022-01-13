@@ -87,3 +87,58 @@ print(Z)
 
 # 20. Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element
 print(np.unravel_index(99, (6,7,8)))
+
+# 21. Create a checkerboard 8x8 matrix using the tile function
+Z = np.tile(np.array([[0, 1], [1, 0]]) , (4,4))
+print(Z)
+
+# 22. Normalize a 5x5 random matrix
+Z = np.random.random((5,5))
+Z = (Z - np.mean(Z)) / np.std(Z)
+print(Z)
+
+# 23. Create a custom dtype that describes a color as four unsigned bytes (RGBA)
+color = np.dtype([('r', np.ubyte), ('g', np.ubyte), ('b', np.ubyte), ('a', np.ubyte)])
+
+# 24. Multiply a 5x3 matrix by a 3x2 matrix (real matrix product)
+A = np.random.random((5,3))
+B = np.random.random((3,2))
+Z = np.dot(A, B)
+print(Z)
+
+# 25. Given a 1D array, negate all elements which are between 3 and 8, in place.
+Z = np.arange(11)
+Z[(3 < Z) & (Z < 8)] *= -1
+print(Z)
+
+# 26. What is the output of the following script?
+sum(range(5), -1); '''9, numpy not imported'''
+sum(range(5), -1); '''10, numpy imported, second argument is axis (negative axis means reverse order)'''
+
+# 27. Consider an integer vector Z, which of these expressions are legal?
+Z = np.arange(1, 10)
+try:
+    Z ** Z; '''legal'''
+    2 << Z >> 2; '''legal'''
+    Z <- Z; '''legal'''
+    1j*Z; '''legal'''
+    Z/1/1; '''legal'''
+    Z<Z>Z; '''illegal'''
+except ValueError:
+    pass
+
+# 28. What are the result of the following expressions?
+np.array(0) / np.array(0); '''RuntimeWarning: invalid value encountered in true_divide'''
+np.array(0) // np.array(0); '''RuntimeWarning: divide by zero encountered in floor_divide'''
+np.array([np.nan]).astype(int).astype(float); '''[-2.14748365e+09]'''
+
+# 29. How to round away from zero a float array?
+Z = np.random.uniform(-10, +10, 10)
+Z = np.copysign(np.ceil(np.abs(Z)), Z)
+print(Z)
+
+# 30. How to find common values betwwen two arrays?
+Z1 = np.random.randint(0, 10, 10)
+Z2 = np.random.randint(0, 10, 10)
+Z = np.intersect1d(Z1, Z2)
+print(Z1, Z2, Z)
