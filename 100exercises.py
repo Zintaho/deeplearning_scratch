@@ -142,3 +142,60 @@ Z1 = np.random.randint(0, 10, 10)
 Z2 = np.random.randint(0, 10, 10)
 Z = np.intersect1d(Z1, Z2)
 print(Z1, Z2, Z)
+
+# 31. How to ignore all numpy warnings (not recommended)?
+defaults = np.seterr(all = "ignore")
+Z = np.ones(1) / 0
+_ = np.seterr(**defaults)
+
+# 32. Is the following expressions true?
+np.sqrt(-1) == np.emath.sqrt(-1); '''false, nan != 1j'''
+
+# 33. How to get the ddates of yesterday, today and tomorrow?
+today = np.datetime64('today')
+yesterday = today - np.timedelta64(1)
+tomorrow = today + np.timedelta64(1)
+print(yesterday, today, tomorrow)
+
+# 34. How to get all the dates corresponding to the month of July 2016?
+Z = np.arange('2016-07', '2016-08', dtype='datetime64[D]')
+print(Z)
+
+# 35. How to compute ((A+B) * (-A/2)) in place (without copy)?
+A = np.ones(3) * 2
+B = np.ones(3) * 1
+np.add(A, B, out=B)
+np.negative(A, out=A)
+np.divide(A, 2, out = A)
+np.multiply(B, A, out = B)
+print(B)
+
+# 36. Extract the integer part of a random array of positive numbers using 5 different methods
+Z = np.random.uniform(0, 10, 10)
+print(Z - Z%1)
+print(Z // 1)
+print(np.floor(Z))
+print(Z.astype(int))
+print(np.trunc(Z))
+
+# 37. Create a 5x5 matrix with row values ranging from 0 to 4
+Z = np.zeros((5,5))
+Z += np.arange(5)
+print(Z)
+
+# 38. Consider a geerator function that generates 10 integers and use it to build an array
+def generate():
+    for x in range(10):
+        yield x
+
+Z = np.fromiter(generate(), dtype=float, count=-1)
+print(Z)
+
+# 39. Create a vector of size 10 with values ranging from 0 to 1 both excluded
+Z = np.linspace(0,1, 11, endpoint=False)[1:]
+print(Z)
+
+# 40. Create a random vector of size 10 and sort it
+Z = np.random.random(10)
+Z.sort()
+print(Z)
